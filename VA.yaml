@@ -1,0 +1,20 @@
+elections:
+  - name: "G18SEN"
+    rep: "G18RSEN"
+    dem: "G18DSEN"
+
+  - name: "G17GOV"
+    rep: "G17RGOV"
+    dem: "G17DGOV"
+
+  - name: "G17LTG"
+    rep: "G17RLTG"
+    dem: "G17DLTG"
+
+  - name: "G17ATG"
+    rep: "G17RATG"
+    dem: "G17DATG"
+
+  - name: "G16PRS"
+    rep: "G16RPRS"
+    dem: "G16DPRS"
