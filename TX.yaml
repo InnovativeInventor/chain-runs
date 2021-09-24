@@ -1,0 +1,20 @@
+elections:
+  - name: "PRES12"
+    rep: "PRES12R"
+    dem: "PRES12D"
+
+  - name: "SEN12"
+    rep: "SEN12R"
+    dem: "SEN12D"
+
+  - name: "SEN14"
+    rep: "SEN14R"
+    dem: "SEN14D"
+
+  - name: "GOV14"
+    rep: "GOV14R"
+    dem: "GOV14D"
+
+  - name: "PRES16"
+    rep: "PRES16R"
+    dem: "PRES16D"

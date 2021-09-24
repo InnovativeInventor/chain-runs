@@ -1,0 +1,32 @@
+elections:
+  - name: "PRES16"
+    rep: "PRES16R"
+    dem: "PRES16D"
+
+  - name: "SEN16"
+    rep: "SEN16R"
+    dem: "SEN16D"
+
+  - name: "GOV18"
+    rep: "GOV18R"
+    dem: "GOV18D"
+
+  - name: "AG18"
+    rep: "AG18R"
+    dem: "AG18D"
+
+  - name: "AUD18"
+    rep: "AUD18R"
+    dem: "AUD18D"
+
+  - name: "SOS18"
+    rep: "SOS18R"
+    dem: "SOS18D"
+
+  - name: "TRE18"
+    rep: "TRE18R"
+    dem: "TRE18D"
+
+  - name: "SEN18"
+    rep: "SEN18R"
+    dem: "SEN18D"
