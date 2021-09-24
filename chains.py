@@ -38,7 +38,7 @@ def create_updaters(state, graph, pop_col, dists, elections: bool = True, absolu
     updaters["population"] = Tally(pop_col, alias="population")
     saved_updaters = list(updaters.keys())
 
-    if elections:
+    if elections and os.path.isfile(f"{state}.yaml"):
         with open(f"{state}.yaml") as f:
             election_meta = yaml.load(f)
 
@@ -52,6 +52,8 @@ def create_updaters(state, graph, pop_col, dists, elections: bool = True, absolu
             updaters["agg_prop_abs"] = aggregate_proportionality(election_meta["elections"], dists, absolute=True)
             saved_updaters.append("agg_prop_abs")
         saved_updaters.append("agg_prop")
+    elif elections and absolute:
+        raise ValueError("Can not optimize partisan metrics for state without election data")
 
     return saved_updaters, updaters
 
@@ -119,13 +121,17 @@ def main(state: str, steps: int, name: str, dists: int, optimize: str = "neutral
 
     counties, nodes_by_county = get_divisions(graph, 'COUNTYFP20')
 
-
     if "abs" in optimize:
-        saved_updaters, updaters = create_updaters(state, graph, pop_col, dists)
+        saved_updaters, updaters = create_updaters(state, graph, pop_col, dists, elections=True, absolute=True)
     else:
-        saved_updaters, updaters = create_updaters(state, graph, pop_col, dists, absolute=True)
+        saved_updaters, updaters = create_updaters(state, graph, pop_col, dists, elections=("prop" in optimize))
 
-    seed_partition = create_seed_partition(graph, pop_col, tolerance, dists, updaters)
+    try:
+        seed_partition = create_seed_partition(graph, pop_col, tolerance, dists, updaters)
+    except KeyError:
+        print(state)
+        raise
+
     constraint = constraints.within_percent_of_ideal_population(seed_partition, tolerance)
     proposal = create_proposal(graph, pop_col, tolerance, dists)
 
